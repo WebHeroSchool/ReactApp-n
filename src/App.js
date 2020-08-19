@@ -1,10 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-
-const day = '18.08.2020'
-const today = `Today is ${day}`
-const tuesday = true;
+import {res} from './number.js';
 
 function App() {
   return (
@@ -20,16 +17,7 @@ function App() {
         }}> Hello World!
         </p>
         <p>
-        {today}
-        </p>
-        <p>{18 + 8 + 2020}
-        </p>
-        <p>
-        {tuesday ? `Yes, today is Tuesday` : `No, today isn't Tuesday`}
-        {undefined}
-        {null}
-        {true}
-        {false}
+        {res}
         </p>
         <a
           className="App-link"
