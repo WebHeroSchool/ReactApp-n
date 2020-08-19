@@ -1,35 +1,7 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import {res} from './number.js';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <p style={{
-          color: 'green',
-          fontSize: 42
-        }}> Hello World!
-        </p>
-        <p>
-        {res}
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const element = (<div>
+  <button>Поехали!</button>
+</div>);
 
-export default App;
+export {element};
