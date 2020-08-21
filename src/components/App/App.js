@@ -12,16 +12,20 @@ import styles from './App.module.css';
 const App = () => {
 	const items = [
 		{
-			value: 'Выпить стакан воды'
+			value: 'Выпить стакан воды',
+			isDone: true
 		},
 		{
-			value: 'Сделать зарядку'
+			value: 'Сделать зарядку',
+			isDone: false
 		},
 		{
-			value: 'Завтрак'
+			value: 'Завтрак',
+			isDone: false
 		},
 		{
-			value: 'Почитать книгу'
+			value: 'Почитать книгу',
+			isDone: false
 		}
 	]
 
