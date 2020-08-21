@@ -2,6 +2,7 @@ import React from 'react';
 import InputItem from '../InputItem/InputItem';
 import ItemList from '../ItemList/ItemList';
 import Footer from '../Footer/Footer';
+import './App.css';
 
 // const glass = 'Выпить стакан воды';
 // const charge = 'Сделать зарядку';
@@ -25,8 +26,8 @@ const App = () => {
 	]
 
 	return (
-		<div>
-			<h1>Дела на день:</h1>
+		<div className="wrap">
+			<h1 className="wrap__title">Дела на день:</h1>
 			<InputItem />
 			<ItemList items={items}/>
 			<Footer num={1} count={2} />
