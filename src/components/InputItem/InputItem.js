@@ -3,10 +3,9 @@ import TextField from '@material-ui/core/TextField';
 
 const InputItem = () => (<span>
 	<TextField
-          id="standard-password-input"
           label="Новое дело"
-          type="password"
-          autoComplete="current-password"
+          id="margin-normal"
+          margin="normal"
     />
 </span>);
 
