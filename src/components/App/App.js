@@ -10,8 +10,8 @@ import styles from './App.module.css';
 // const book = 'Почитать книгу';
 
 class App extends React.Component {
-	render() {
-		const items = [
+	state = {
+		items: [
 			{
 				value: 'Выпить стакан воды',
 				isDone: true
@@ -28,14 +28,16 @@ class App extends React.Component {
 				value: 'Почитать книгу',
 				isDone: false
 			}
-		];
-
+		]
+	}
+	render() {
+		
 		return (
 			<div className={styles.wrap}>
 				<div className={styles.color}>
 					<h1 className={styles.title}>Дела на день:</h1>
 					<InputItem />
-					<ItemList items={items}/>
+					<ItemList items={this.state.items}/>
 					<Footer />
 				</div>
 			</div>);
