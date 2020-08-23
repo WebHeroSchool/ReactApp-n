@@ -1,0 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap');
+
+.input {
+  margin: 0 0 2.5% 0;
+}
+
+.text {
+  font: normal normal 10px 'Didact Gothic', sans-serif;
+}

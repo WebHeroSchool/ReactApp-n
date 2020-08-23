@@ -31,10 +31,12 @@ const App = () => {
 
 	return (
 		<div className={styles.wrap}>
-			<h1 className={styles.title}>Дела на день:</h1>
-			<InputItem />
-			<ItemList items={items}/>
-			<Footer num={1} count={2} />
+			<div className={styles.color}>
+				<h1 className={styles.title}>Дела на день:</h1>
+				<InputItem />
+				<ItemList items={items}/>
+				<Footer />
+			</div>
 		</div>);
 }
 
