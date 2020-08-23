@@ -9,13 +9,15 @@ const ItemList = ({ items, onButtonClick }) => (<div className={styles.list}>
 	<ul className={styles.item}>
 		{items.map(item => <li className={styles.li} key={item.value}>
 			<Checkbox
-				onClick={() => onButtonClick(item.isDone)}
+				onClick={() => onButtonClick(item.id)}
 				color="default"
 	            inputProps={{ 'aria-label': 'checkbox with default color' }} /> 
 			<Item
 				value={item.value}
-				isDone={item.isDone} 
-				onButtonClick={onButtonClick} />
+				isDone={item.isDone}
+				id={item.id} 
+				onButtonClick={onButtonClick} 
+			/>
 			<IconButton aria-label="delete" className={styles.remove}>
           		<DeleteIcon />
         	</IconButton>
