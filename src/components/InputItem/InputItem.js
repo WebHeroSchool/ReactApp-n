@@ -1,12 +1,11 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
+import styles from './InputItem.module.css';
 
-const InputItem = () => (<span>
-	<TextField
-          id="standard-password-input"
-          label="Новое дело"
-          type="password"
-          autoComplete="current-password"
+const InputItem = () => (<span className={styles.input}>
+	<TextField 
+        label="Новое дело"
+        className={styles.text}
     />
 </span>);
 
