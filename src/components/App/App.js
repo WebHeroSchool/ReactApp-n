@@ -30,6 +30,9 @@ class App extends React.Component {
 			}
 		]
 	}
+
+	onButtonClick = isDone => console.log(isDone);
+
 	render() {
 		
 		return (
@@ -37,7 +40,7 @@ class App extends React.Component {
 				<div className={styles.color}>
 					<h1 className={styles.title}>Дела на день:</h1>
 					<InputItem />
-					<ItemList items={this.state.items}/>
+					<ItemList items={this.state.items} onButtonClick={this.onButtonClick} />
 					<Footer />
 				</div>
 			</div>);
