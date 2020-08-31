@@ -11,6 +11,7 @@ const ItemList = ({ items, onButtonClick }) => (<div className={styles.list}>
 			<Checkbox
 				onClick={() => onButtonClick(item.id)}
 				color="default"
+				checked={item.isDone}
 	            inputProps={{ 'aria-label': 'checkbox with default color' }} /> 
 			<Item
 				value={item.value}
