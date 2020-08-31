@@ -14,22 +14,39 @@ class App extends React.Component {
 		items: [
 			{
 				value: 'Выпить стакан воды',
-				isDone: true
+				isDone: true,
+				id: 1
 			},
 			{
 				value: 'Сделать зарядку',
-				isDone: false
+				isDone: false,
+				id: 2
 			},
 			{
 				value: 'Завтрак',
-				isDone: false
+				isDone: false,
+				id: 3
 			},
 			{
 				value: 'Почитать книгу',
-				isDone: false
+				isDone: false,
+				id: 4
 			}
 		]
 	}
+
+	onButtonClick = id => {
+		const newItemList = this.state.items.map(item => {
+			const newItem = { ...item };
+			if(item.id === id) {
+				newItem.isDone = !item.isDone;
+			}
+
+			return newItem;
+		});
+		this.setState({ items: newItemList})
+	}
+
 	render() {
 		
 		return (
@@ -37,7 +54,7 @@ class App extends React.Component {
 				<div className={styles.color}>
 					<h1 className={styles.title}>Дела на день:</h1>
 					<InputItem />
-					<ItemList items={this.state.items}/>
+					<ItemList items={this.state.items} onButtonClick={this.onButtonClick} />
 					<Footer />
 				</div>
 			</div>);
