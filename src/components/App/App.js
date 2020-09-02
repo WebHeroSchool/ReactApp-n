@@ -47,6 +47,11 @@ class App extends React.Component {
 		this.setState({ items: newItemList})
 	}
 
+	onClickDelete = id => {
+		const deleteItemList = this.state.items.filter(item => item.id !== id)
+		this.setState({ items: deleteItemList})
+	}
+
 	render() {
 		
 		return (
@@ -54,7 +59,7 @@ class App extends React.Component {
 				<div className={styles.color}>
 					<h1 className={styles.title}>Дела на день:</h1>
 					<InputItem />
-					<ItemList items={this.state.items} onButtonClick={this.onButtonClick} />
+					<ItemList items={this.state.items} onButtonClick={this.onButtonClick} onClickDelete={this.onClickDelete}/>
 					<Footer />
 				</div>
 			</div>);
