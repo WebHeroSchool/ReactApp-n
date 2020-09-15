@@ -32,7 +32,8 @@ class App extends React.Component {
 				isDone: false,
 				id: 4
 			}
-		]
+		],
+		count: 4
 	}
 
 	onButtonClick = id => {
@@ -52,13 +53,26 @@ class App extends React.Component {
 		this.setState({ items: deleteItemList})
 	}
 
+	onClickAdd = value => this.setState(state => ({
+			items: [
+				...state.items,
+				{
+					value,
+					isDone: false,
+					id: state.count + 1
+				}
+			],
+			count: state.count + 1
+		})
+	);
+
 	render() {
 		
 		return (
 			<div className={styles.wrap}>
 				<div className={styles.color}>
 					<h1 className={styles.title}>Дела на день:</h1>
-					<InputItem />
+					<InputItem onClickAdd={this.onClickAdd}/>
 					<ItemList items={this.state.items} onButtonClick={this.onButtonClick} onClickDelete={this.onClickDelete}/>
 					<Footer />
 				</div>
