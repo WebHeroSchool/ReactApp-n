@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import DoneIcon from '@material-ui/icons/Done';
 import ViewListIcon from '@material-ui/icons/ViewList';
@@ -15,8 +16,8 @@ const Footer = ({count}) => (<div className={styles.button}>
 	<BottomNavigationAction className={styles.delete} label="Удалить завершенные" icon={<DeleteForeverIcon />} />	
 </div>);
 
-Footer.defaultProps = {
-	count: 3
+Footer.propTypes = {
+	count: PropTypes.number.isRequired
 };
 
 export default Footer;

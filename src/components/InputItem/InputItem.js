@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
 import styles from './InputItem.module.css';
 
@@ -41,5 +42,12 @@ class InputItem extends React.Component {
 		</div>);
 	}
 }
+
+InputItem.propTypes = {
+	value: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.number
+	])
+};
 
 export default InputItem;

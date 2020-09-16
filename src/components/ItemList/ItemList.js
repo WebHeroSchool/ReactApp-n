@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Item from '../Item/Item';
 import Checkbox from '@material-ui/core/Checkbox';
 import IconButton from '@material-ui/core/IconButton';
@@ -29,6 +30,10 @@ ItemList.defaultProps = {
 	items: {
 		value: 'Дела отсутсвуют'
 	}
-}
+};
+
+ItemList.propTypes = {
+	items: PropTypes.array
+};
 
 export default ItemList;
