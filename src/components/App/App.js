@@ -4,11 +4,6 @@ import ItemList from '../ItemList/ItemList';
 import Footer from '../Footer/Footer';
 import styles from './App.module.css';
 
-// const glass = 'Выпить стакан воды';
-// const charge = 'Сделать зарядку';
-// const breakfast = 'Завтрак';
-// const book = 'Почитать книгу';
-
 class App extends React.Component {
 	state = {
 		items: [

@@ -16,8 +16,7 @@ const ItemList = ({ items, onButtonClick, onClickDelete }) => (<div className={s
 			<Item
 				value={item.value}
 				isDone={item.isDone}
-				id={item.id} 
-				onButtonClick={onButtonClick} 
+				id={item.id}
 			/>
 			<IconButton aria-label="delete" className={styles.remove}>
           		<DeleteIcon onClick={() => onClickDelete(item.id)}/>
