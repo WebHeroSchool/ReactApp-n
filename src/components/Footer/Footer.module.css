@@ -1,6 +1,11 @@
 .button {
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-auto-flow: column;
+  align-items: center;
+}
+
+.active{
+  
 }
 
 .all,

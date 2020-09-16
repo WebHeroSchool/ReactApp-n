@@ -7,12 +7,16 @@ import DoneAllIcon from '@material-ui/icons/DoneAll';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import styles from './Footer.module.css';
 
-const Footer = () => (<div className={styles.button}>
-		<span><BottomNavigationAction className={styles.done} label="Выполнено" icon={<DoneIcon />} /></span>
-		<span><BottomNavigationAction className={styles.all} label="Весь список" icon={<ViewListIcon />} /></span>
-		<span><BottomNavigationAction className={styles.active} label="Активные" icon={<AccessAlarmIcon />} /></span>
-		<span><BottomNavigationAction className={styles.completed} label="Завершенные" icon={<DoneAllIcon />} /></span>
-		<span><BottomNavigationAction className={styles.delete} label="Удалить завершенные" icon={<DeleteForeverIcon />} /></span>
-	</div>);
+const Footer = ({count}) => (<div className={styles.button}>
+	<BottomNavigationAction className={styles.active} label="Активные" icon={<AccessAlarmIcon />} />Еще выполнить: {count}
+	<BottomNavigationAction className={styles.done} label="Выполнено" icon={<DoneIcon />} />
+	<BottomNavigationAction className={styles.all} label="Весь список" icon={<ViewListIcon />} />
+	<BottomNavigationAction className={styles.completed} label="Завершенные" icon={<DoneAllIcon />} />
+	<BottomNavigationAction className={styles.delete} label="Удалить завершенные" icon={<DeleteForeverIcon />} />	
+</div>);
+
+Footer.defaultProps = {
+	count: 3
+};
 
 export default Footer;
