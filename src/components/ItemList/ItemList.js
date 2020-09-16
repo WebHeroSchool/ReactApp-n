@@ -7,7 +7,7 @@ import styles from './ItemList.module.css'
 
 const ItemList = ({ items, onButtonClick, onClickDelete }) => (<div className={styles.list}>
 	<ul className={styles.item}>
-		{items.map(item => <li className={styles.li} key={item.value}>
+		{items.map(item => <li className={styles.li} key={item.id}>
 			<Checkbox
 				onClick={() => onButtonClick(item.id)}
 				color="default"
@@ -16,8 +16,7 @@ const ItemList = ({ items, onButtonClick, onClickDelete }) => (<div className={s
 			<Item
 				value={item.value}
 				isDone={item.isDone}
-				id={item.id} 
-				onButtonClick={onButtonClick} 
+				id={item.id}
 			/>
 			<IconButton aria-label="delete" className={styles.remove}>
           		<DeleteIcon onClick={() => onClickDelete(item.id)}/>
