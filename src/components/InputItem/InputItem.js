@@ -2,11 +2,44 @@ import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import styles from './InputItem.module.css';
 
-const InputItem = () => (<span className={styles.input}>
-	<TextField 
-        label="Новое дело"
-        className={styles.text}
-    />
-</span>);
+class InputItem extends React.Component {
+	state = {
+		inputValue: '',
+		inputLabel: 'Новое дело'
+	};
+
+	onButtonClick =() => {
+		if(this.state.inputValue !== '') {
+			this.setState({
+				inputValue: ''
+			});
+			this.props.onClickAdd(this.state.inputValue.charAt(0).toUpperCase() + this.state.inputValue.toLowerCase());
+		} else {
+			this.setState({
+				inputLabel: <span className={styles.color}>Ошибка: Пустое поле</span>
+			});
+		}
+		
+	}
+
+	render() {
+		const { onClickAdd } = this.props;
+
+		return (<div className={styles.input}>
+			<TextField 
+		        label={this.state.inputLabel}
+		        className={styles.text}
+		        value={this.state.inputValue}
+		        onClick={() => this.setState({inputLabel: 'Новое дело'})}
+		        onChange={event => this.setState({inputValue: event.target.value.toUpperCase()})}
+		    />
+		    <button 
+		    	className={styles.button} 
+			    onClick={this.onButtonClick}>
+			    Добавить
+			</button>
+		</div>);
+	}
+}
 
 export default InputItem;
