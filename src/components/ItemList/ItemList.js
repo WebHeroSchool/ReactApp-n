@@ -25,10 +25,4 @@ const ItemList = ({ items, onButtonClick, onClickDelete }) => (<div className={s
 	</ul>
 </div>);
 
-ItemList.defaultProps = {
-	items: {
-		value: 'Дела отсутсвуют'
-	}
-}
-
 export default ItemList;
