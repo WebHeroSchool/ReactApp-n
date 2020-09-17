@@ -26,12 +26,6 @@ const ItemList = ({ items, onButtonClick, onClickDelete }) => (<div className={s
 	</ul>
 </div>);
 
-ItemList.defaultProps = {
-	items: {
-		value: 'Дела отсутсвуют'
-	}
-};
-
 ItemList.propTypes = {
 	items: PropTypes.array
 };
