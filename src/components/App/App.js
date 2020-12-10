@@ -65,9 +65,6 @@ class App extends React.Component {
 			count: state.count + 1
 		})
 	);
-
-
-
 	render() {
 		
 		return (
