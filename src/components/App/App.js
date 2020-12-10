@@ -66,6 +66,8 @@ class App extends React.Component {
 		})
 	);
 
+
+
 	render() {
 		
 		return (
@@ -73,7 +75,10 @@ class App extends React.Component {
 				<div className={styles.color}>
 					<h1 className={styles.title}>Дела на день:</h1>
 					<InputItem onClickAdd={this.onClickAdd}/>
-					<ItemList items={this.state.items} onButtonClick={this.onButtonClick} onClickDelete={this.onClickDelete}/>
+					<ItemList 
+						items={this.state.items} 
+						onButtonClick={this.onButtonClick} 
+						onClickDelete={this.onClickDelete}/>
 					<Footer count={this.state.count}/>
 				</div>
 			</div>);
