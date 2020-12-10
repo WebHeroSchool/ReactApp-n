@@ -8,6 +8,10 @@ class Item extends React.Component {
 		console.log('componentDidMount');
 	}
 
+	componentDidUpdate() {
+		console.log('compomentDidUpdate');
+	}
+
 	componentWillUnmount() {
 		console.log('componentWillUnmount');
 	}
