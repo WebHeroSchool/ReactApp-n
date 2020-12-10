@@ -66,6 +66,10 @@ class App extends React.Component {
 		})
 	);
 
+	compomentDidUpdate() {
+		console.log('compomentDidUpdate');
+	}
+
 	render() {
 		
 		return (
