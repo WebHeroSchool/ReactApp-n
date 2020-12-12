@@ -19,8 +19,9 @@ class InputItem extends React.Component {
 			this.setState({
 				inputLabel: <span className={styles.color}>Ошибка: Пустое поле</span>
 			});
-		}		
+		}	
 	}
+
 
 	render() {
 		const { onClickAdd } = this.props;

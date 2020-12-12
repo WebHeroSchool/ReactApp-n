@@ -4,13 +4,13 @@ import classnames from 'classnames';
 import styles from './Item.module.css';
 
 class Item extends React.Component {
-	componentDidMount() {
-		this.timerID = setInterval(() => console.log('componentDidMount'), 1000);
-	}
+	// componentDidMount() {
+	// 	this.timerID = setInterval(() => console.log('componentDidMount'), 1000);
+	// }
 
-	componentWillUnmount() {
-	 	clearInterval(this.timerID);
-	}
+	// componentWillUnmount() {
+	//  	clearInterval(this.timerID);
+	// }
 
 	// componentDidUpdate() {
 	// 	console.log('compomentDidUpdate');
