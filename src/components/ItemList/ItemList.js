@@ -7,23 +7,24 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import styles from './ItemList.module.css'
 
 class ItemList extends React.Component {
-	componentDidMount() {
-		console.log('componentDidMount');
-	}
+	// componentDidMount() {
+	// 	console.log('componentDidMount');
+	// }
 
- 	compomentDidUpdate() {
- 		console.log('compomentDidUpdate');
- 	}
+ // 	compomentDidUpdate() {
+ // 		console.log('compomentDidUpdate');
+ // 	}
+
 
  	render() {
  		const { items, onButtonClick, onClickDelete } = this.props;
- 		return (
- 			<div className={styles.list}>
+ 		return (<div className={styles.list}>
  				<ul className={styles.item}>
  					{items.map(item => <li className={styles.li} key={item.id}>
  						<Checkbox
  							onClick={() => onButtonClick(item.id)}
- 							color="default" 							checked={item.isDone}
+ 							color="default" 							
+ 							checked={item.isDone}
  				            inputProps={{ 'aria-label': 'checkbox with default color' }} /> 
  						<Item
  							value={item.value}

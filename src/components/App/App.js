@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import InputItem from '../InputItem/InputItem';
 import ItemList from '../ItemList/ItemList';
 import Footer from '../Footer/Footer';
@@ -9,8 +9,8 @@ import styles from './App.module.css';
 // const breakfast = 'Завтрак';
 // const book = 'Почитать книгу';
 
-class App extends React.Component {
-	state = {
+const App = () => {
+	const state = {
 		items: [
 			{
 				value: 'Выпить стакан воды',
@@ -36,8 +36,15 @@ class App extends React.Component {
 		count: 4
 	}
 
-	onButtonClick = id => {
-		const newItemList = this.state.items.map(item => {
+	const [items, setItems] = useState(state.items);
+	const [count, setCount] = useState(state.count);
+
+	useEffect(() => {
+    	console.log('Вы нажали на checkbox');
+  	});
+
+	const onButtonClick = id => {
+		const newItemList = items.map(item => {
 			const newItem = { ...item };
 			if(item.id === id) {
 				newItem.isDone = !item.isDone;
@@ -45,41 +52,38 @@ class App extends React.Component {
 
 			return newItem;
 		});
-		this.setState({ items: newItemList})
-	}
+		setItems(newItemList)
+	};
 	
-	onClickDelete = id => {
-		const deleteItemList = this.state.items.filter(item => item.id !== id)
-		this.setState({ items: deleteItemList})
-	}
+	const onClickDelete = id => {
+		const deleteItemList = items.filter(item => item.id !== id);
+		setItems(deleteItemList)
+		setCount(count - 1)
+	};
 
-	onClickAdd = value => this.setState(state => ({
-			items: [
-				...state.items,
+	const onClickAdd = value => {
+	
+	setItems([...items,
 				{
 					value,
 					isDone: false,
-					id: state.count + 1
-				}
-			],
-			count: state.count + 1
-		})
-	);
-	render() {
+					id: count + 1
+				}]);
+	setCount( count + 1)
+};
 		
 		return (
 			<div className={styles.wrap}>
 				<div className={styles.color}>
 					<h1 className={styles.title}>Дела на день:</h1>
-					<InputItem onClickAdd={this.onClickAdd}/>
+					<InputItem onClickAdd={onClickAdd}/>
 					<ItemList 
-						items={this.state.items} 
-						onButtonClick={this.onButtonClick} 
-						onClickDelete={this.onClickDelete}/>
-					<Footer count={this.state.count}/>
+						items={items} 
+						onButtonClick={onButtonClick} 
+						onClickDelete={onClickDelete}/>
+					<Footer count={count}/>
 				</div>
 			</div>);
-	}
 };
 
 export default App;
