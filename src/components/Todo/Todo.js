@@ -34,6 +34,7 @@ const Todo = () => {
 	const [items, setItems] = useState(state.items);
 	const [visibleItems, setVisibleItems] = useState(state.items);
 	const [count, setCount] = useState(state.count);
+	const [filter, setFilter] = useState('all');
 
 	const onButtonClick = id => {
 		const newItemList = items.map(item => {
@@ -41,57 +42,49 @@ const Todo = () => {
 			if(item.id === id) {
 				newItem.isDone = !item.isDone;
 			}
-
 			return newItem;
 		});
 		setItems(newItemList);
-		setVisibleItems(newItemList);
+		setVisibleItems(filterState(newItemList, filter));
 	};
 	
 	const onClickDelete = id => {
 		const deleteItemList = items.filter(item => item.id !== id);
 		setItems(deleteItemList)
-		setVisibleItems(newItemList);
+		setVisibleItems(filterState(deleteItemList, filter));
 		setCount(count - 1)
 	};
 
 	const onClickAdd = value => {
-	
-		setItems([...items,
-					{
-						value,
-						isDone: false,
-						id: count + 1
-					}]);
+		const newItemList = [...items,
+			{
+				value,
+				isDone: false,
+				id: count + 1
+			}];
+		setItems(newItemList);
 		setCount( count + 1);
-		setVisibleItems(newItemList);
+		setVisibleItems(filterState(newItemList, filter));
 	};
 
-	const onClickFilter = e => {
-		let filterItem = item;
-		switch(e) {
-			case 'all': 
-				filterItem = item;
-			break;
-			case 'active': 
-				filterItem = items.filter(item => item.isDone !== true);;
-			break;
-			case 'completed': 
-				filterItem = items.filter(item => item.isDone === true);
-			break;
-			default:
-     			filterItem = state.items;
-		}
-		setVisibleItems(newItemList);
+	const onClickFilter = string => {
+		const newItemList = items;
+		setFilter(string);
+		setVisibleItems(filterState(newItemList, string));
 	};
 
-	const onClickAllDelete = isDone => {
+	function filterState(obj, string) {
+		return (string === 'active' ? 
+			obj.filter(item => !item.isDone) :
+				string === 'done' ?
+					obj.filter(item => item.isDone) : obj)
+	}
+
+	const onClickAllDelete = () => {
 		const deleteItemList = items.filter(item => item.isDone !== true);
 		setItems(deleteItemList);
-		setVisibleItems(deleteItemList);
+		setVisibleItems(filterState(deleteItemList, filter));
 	  };
-
-
 
 		return (
 			<div className={styles.wrap}>
@@ -99,11 +92,11 @@ const Todo = () => {
 					<h1 className={styles.title}>Дела на день:</h1>
 					<InputItem onClickAdd={onClickAdd}/>
 					<ItemList 
-						items={items} 
+						items={visibleItems} 
 						onButtonClick={onButtonClick} 
 						onClickDelete={onClickDelete}/>
 					<Footer 
-						count={count}
+						count={items.length}
 						onClickAdd={onClickAdd}
 						onClickFilter={onClickFilter}
 						onClickAllDelete={onClickAllDelete}/>
