@@ -1,7 +1,12 @@
 .button {
-  display: grid;
-  grid-auto-flow: column;
-  align-items: center;
+  display: flex;
+  min-width: 250px;
+  justify-content: space-between;
+}
+
+.button:hover {
+  cursor: pointer;
+  transition: .2s ease;
 }
 
 .active{

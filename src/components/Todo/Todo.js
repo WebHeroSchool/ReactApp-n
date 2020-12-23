@@ -32,11 +32,8 @@ const Todo = () => {
 	}
 
 	const [items, setItems] = useState(state.items);
+	const [visibleItems, setVisibleItems] = useState(state.items);
 	const [count, setCount] = useState(state.count);
-
-	useEffect(() => {
-    	console.log('Вы нажали на checkbox');
-  	});
 
 	const onButtonClick = id => {
 		const newItemList = items.map(item => {
@@ -47,26 +44,55 @@ const Todo = () => {
 
 			return newItem;
 		});
-		setItems(newItemList)
+		setItems(newItemList);
+		setVisibleItems(newItemList);
 	};
 	
 	const onClickDelete = id => {
 		const deleteItemList = items.filter(item => item.id !== id);
 		setItems(deleteItemList)
+		setVisibleItems(newItemList);
 		setCount(count - 1)
 	};
 
 	const onClickAdd = value => {
 	
-	setItems([...items,
-				{
-					value,
-					isDone: false,
-					id: count + 1
-				}]);
-	setCount( count + 1)
-};
-		
+		setItems([...items,
+					{
+						value,
+						isDone: false,
+						id: count + 1
+					}]);
+		setCount( count + 1);
+		setVisibleItems(newItemList);
+	};
+
+	const onClickFilter = e => {
+		let filterItem = item;
+		switch(e) {
+			case 'all': 
+				filterItem = item;
+			break;
+			case 'active': 
+				filterItem = items.filter(item => item.isDone !== true);;
+			break;
+			case 'completed': 
+				filterItem = items.filter(item => item.isDone === true);
+			break;
+			default:
+     			filterItem = state.items;
+		}
+		setVisibleItems(newItemList);
+	};
+
+	const onClickAllDelete = isDone => {
+		const deleteItemList = items.filter(item => item.isDone !== true);
+		setItems(deleteItemList);
+		setVisibleItems(deleteItemList);
+	  };
+
+
+
 		return (
 			<div className={styles.wrap}>
 				<div className={styles.color}>
@@ -76,7 +102,11 @@ const Todo = () => {
 						items={items} 
 						onButtonClick={onButtonClick} 
 						onClickDelete={onClickDelete}/>
-					<Footer count={count}/>
+					<Footer 
+						count={count}
+						onClickAdd={onClickAdd}
+						onClickFilter={onClickFilter}
+						onClickAllDelete={onClickAllDelete}/>
 				</div>
 			</div>);
 };

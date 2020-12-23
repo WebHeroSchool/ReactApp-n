@@ -14,7 +14,7 @@ class InputItem extends React.Component {
 			this.setState({
 				inputValue: ''
 			});
-			this.props.onClickAdd(this.state.inputValue.charAt(0).toUpperCase() + this.state.inputValue.toLowerCase());
+			this.props.onClickAdd(this.state.inputValue.charAt(0).toUpperCase() + this.state.inputValue.toLowerCase().slice(1));
 		} else {
 			this.setState({
 				inputLabel: <span className={styles.color}>Ошибка: Пустое поле</span>
