@@ -53,6 +53,16 @@ const Todo = () => {
 		setItems(deleteItemList)
 		setVisibleItems(filterState(deleteItemList, filter));
 		setCount(count - 1)
+
+		const newItemList = [...this.state.items];
+        let num = 0;
+        newItemList.forEach(item => {
+
+          if (item.isDone === true) {
+            num++;
+          }
+		  item.index -= num;
+		});	  
 	};
 
 	const onClickAdd = value => {
@@ -97,9 +107,11 @@ const Todo = () => {
 						onClickDelete={onClickDelete}/>
 					<Footer 
 						count={items.length}
-						onClickAdd={onClickAdd}
+						num={items.filter(item => item.isDone === false).length}
+						numDone={items.filter(i => i.isDone === true).length}
 						onClickFilter={onClickFilter}
-						onClickAllDelete={onClickAllDelete}/>
+						onClickAllDelete={onClickAllDelete}
+						onClickDelete={onClickDelete}/>
 				</div>
 			</div>);
 };

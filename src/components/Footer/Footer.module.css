@@ -1,19 +1,17 @@
 .button {
   display: flex;
-  min-width: 250px;
+  min-width: 350px;
   justify-content: space-between;
+  margin-bottom: 8%;
 }
 
-.button:hover {
+.click {
+  width: 86px;
+  height: 34px;
+  font: normal normal 14px 'Jost', sans-serif;
+}
+
+.click:hover {
   cursor: pointer;
   transition: .2s ease;
-}
-
-.active{
-  
-}
-
-.all,
-.completed,
-.delete {
 }
