@@ -53,16 +53,15 @@ const Todo = () => {
 		setItems(deleteItemList)
 		setVisibleItems(filterState(deleteItemList, filter));
 		setCount(count - 1)
+ 
+        // let num = 0;
+        // deleteItemList.forEach(item => {
 
-		const newItemList = [...this.state.items];
-        let num = 0;
-        newItemList.forEach(item => {
-
-          if (item.isDone === true) {
-            num++;
-          }
-		  item.index -= num;
-		});	  
+        //   if (item.isDone === true) {
+        //     num++;
+        //   }
+		//   item.index -= num;
+		// });	  
 	};
 
 	const onClickAdd = value => {
@@ -100,7 +99,9 @@ const Todo = () => {
 			<div className={styles.wrap}>
 				<div className={styles.color}>
 					<h1 className={styles.title}>Дела на день:</h1>
-					<InputItem onClickAdd={onClickAdd}/>
+					<InputItem 
+						onClickAdd={onClickAdd}
+						items={items}/>
 					<ItemList 
 						items={visibleItems} 
 						onButtonClick={onButtonClick} 

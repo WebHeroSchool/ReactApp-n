@@ -31,7 +31,7 @@ a {
 .social {
   display: flex;
   justify-content: space-around;
-  min-width: 60px;
+  min-width: 160px;
 }
 
 svg:hover {
@@ -50,21 +50,24 @@ svg:active {
   align-items: center;
   justify-content: space-between;
   min-height: 200px;
+  margin-left: 2%;
 }
 
 .block {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 6%;
 }
 
 .button {
-  min-width: 150px;
-  height: 100px;
+  min-width: 80%;
+  min-height: 100px;
   background: #e0e0e0;
   border-radius: 4px;
   cursor: pointer;
   border: .5px solid #6e6c6b;
+  margin-bottom: 1.5%;
 }
 
 .button:hover {
@@ -78,6 +81,11 @@ svg:active {
 
 .name {
   font: normal normal 30px 'Jost', sans-serif;
+  margin-bottom: 5%;
+}
+
+.bio {
+  text-align: center;
 }
 
 .bio,
@@ -98,6 +106,7 @@ svg:active {
   /* align-items: center; */
   display: flex;
   flex-direction: column;
+  margin: 3%;
   /* justify-content: space-between; */
 }
 
@@ -114,4 +123,44 @@ svg:active {
 
 .desc {
   font: normal normal 18px 'Jost', sans-serif;
+  margin: 0;
+}
+
+.top {
+  margin: 2%;
+}
+
+.css_language,
+.html_language,
+.js_language {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 3px;
+}
+
+.css_language {
+  background-color: #563d7c;
+}
+
+.html_language {
+  background-color: #e34c26;
+}
+
+.js_language {
+  background-color: #f1e05a;
+}
+
+.repo_lang {
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+}
+
+.block_wrap {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 2% 0 0 0;
 }

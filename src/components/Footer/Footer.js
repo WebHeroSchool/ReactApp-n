@@ -10,7 +10,7 @@ const Footer = ({count, num, numDone, onClickFilter, onClickAllDelete, onClickDe
 	<div className={styles.active} id="active" onClick={() => onClickFilter('active')}><button className={styles.click}>Active{<AccessAlarmIcon />}{num}</button></div>
 	<div className={styles.done} id="done" onClick={() => onClickFilter('done')}><button className={styles.click}>Done{<DoneIcon />}{numDone}</button></div>
 	<div className={styles.all} id="all" onClick={() => onClickFilter('all')}><button className={styles.click}>All{<ViewListIcon />}{count}</button></div>
-	<div className={styles.delete} onClick={onClickAllDelete}><button className={styles.click}>Delete{<DeleteForeverIcon />}{count - numDone}</button></div>
+	<div className={styles.delete} onClick={onClickAllDelete}><button className={styles.click}>Delete{<DeleteForeverIcon />}</button></div>
 </div>);
 
 Footer.propTypes = {
