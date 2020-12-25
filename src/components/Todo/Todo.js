@@ -6,7 +6,7 @@ import styles from './Todo.module.css';
 
 const Todo = () => {
 	const state = {
-		items: [
+		items: JSON.parse(localStorage.getItem('items')) || [
 			{
 				value: 'Выпить стакан воды',
 				isDone: true,
@@ -28,13 +28,17 @@ const Todo = () => {
 				id: 4
 			}
 		],
-		count: 4
+		count: JSON.parse(localStorage.getItem("count")) || 4
 	}
 
 	const [items, setItems] = useState(state.items);
 	const [visibleItems, setVisibleItems] = useState(state.items);
 	const [count, setCount] = useState(state.count);
 	const [filter, setFilter] = useState('all');
+
+	useEffect(() => {
+		localStorage.setItem("items", JSON.stringify(items));
+	  }, [items]);
 
 	const onButtonClick = id => {
 		const newItemList = items.map(item => {
@@ -94,6 +98,10 @@ const Todo = () => {
 		setItems(deleteItemList);
 		setVisibleItems(filterState(deleteItemList, filter));
 	  };
+
+	useEffect(() => {
+		localStorage.setItem("count", JSON.stringify(count));
+	  }, [count]);
 
 		return (
 			<div className={styles.wrap}>
