@@ -34,7 +34,7 @@
 li {
   list-style-type: none;
   font: normal normal 20px 'Jost', sans-serif;
-  transition: all .4s;
+  transition: all .2s;
 
 }
 
@@ -45,6 +45,9 @@ li {
 }
 
 .item:hover {
-  padding: 5px 10px;
-  background:rgba(148, 159, 133, 0.2);
+  opacity: 0.5;
+}
+
+.item:active {
+  color: #485eca;
 }

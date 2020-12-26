@@ -3,6 +3,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import { Octokit } from '@octokit/rest';
 import styles from './About.module.css';
 import classnames from 'classnames';
+import Pagination from '@material-ui/lab/Pagination';
 
 
 const octokit = new Octokit();
@@ -11,11 +12,13 @@ class About extends React.Component {
 		isLoading: true,
 		userData: [],
 		repoList: [],
-		fetchFailure: false
+		fetchFailure: false,
+		currentPage: 1,
+    	perPage: 3
 	}
 
 	componentDidMount() {
-		
+		this.requestRepolist(this.state.perPage, this.state.currentPage);
 
 		octokit.users.getByUsername({
 		  username: 'Alina1317'
@@ -29,14 +32,16 @@ class About extends React.Component {
 			})
 		});
 
-		
+		requestRepolist = (perPage, selectedPage) => {	
 			octokit.repos.listForUser({
-				username: 'Alina1317'
+				username: 'Alina1317',
+				per_page: perPage,
+				page: selectedPage
 			}).then(({ data }) => {
 				this.setState ({
 					repoList: data,
-					isLoading: false
-				// console.log(data.languages);
+					isLoading: false,
+					currentPage: selectedPage
 				})
 			}).catch(() => {
 				this.setState({
@@ -44,10 +49,14 @@ class About extends React.Component {
 				})
 			});
 		};
+	};
 	
 
 	render() {
-		const { isLoading, userData, repoList, fetchFailure} = this.state;
+		const { isLoading, userData, repoList, fetchFailure, currentPage, perPage} = this.state;
+		const switchPage = (event, page) => {
+			this.requestRepolist(perPage, page);
+		  };
 		
 		return (
 			<div className={styles.wrap}>
@@ -92,6 +101,14 @@ class About extends React.Component {
 						</div>))}
 					</div>}
 				</div>
+				<Pagination 
+					onChange={switchPage} 
+					page={currentPage} 
+					className={styles.pagination} 
+					count={Math.ceil(userData.public_repos/ perPage)} 
+					shape="rounded" 
+					color="secondary" 
+				/>
 				{fetchFailure && <h2>Ошибка, что-то пошло не так</h2>}
 			
 			</div>

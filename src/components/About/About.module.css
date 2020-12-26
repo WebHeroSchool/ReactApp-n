@@ -13,6 +13,7 @@
 a {
   text-decoration: none;
   color: #000;
+  cursor: pointer;
 }
 
 .about {
@@ -71,7 +72,12 @@ svg:active {
 }
 
 .button:hover {
-  background: #979695;
+  background: #c4c4c4;
+  transition: .2s ease;
+}
+
+.button:active {
+  background: #a3a1a1;
   transition: .2s ease;
 }
 
