@@ -6,7 +6,7 @@ import styles from './Todo.module.css';
 
 const Todo = () => {
 	const state = {
-		items: [
+		items: JSON.parse(localStorage.getItem('items')) || [
 			{
 				value: 'Выпить стакан воды',
 				isDone: true,
@@ -28,15 +28,17 @@ const Todo = () => {
 				id: 4
 			}
 		],
-		count: 4
+		count: JSON.parse(localStorage.getItem("count")) || 4
 	}
 
 	const [items, setItems] = useState(state.items);
+	const [visibleItems, setVisibleItems] = useState(state.items);
 	const [count, setCount] = useState(state.count);
+	const [filter, setFilter] = useState('all');
 
 	useEffect(() => {
-    	console.log('Вы нажали на checkbox');
-  	});
+		localStorage.setItem("items", JSON.stringify(items));
+	  }, [items]);
 
 	const onButtonClick = id => {
 		const newItemList = items.map(item => {
@@ -44,39 +46,81 @@ const Todo = () => {
 			if(item.id === id) {
 				newItem.isDone = !item.isDone;
 			}
-
 			return newItem;
 		});
-		setItems(newItemList)
+		setItems(newItemList);
+		setVisibleItems(filterState(newItemList, filter));
 	};
 	
 	const onClickDelete = id => {
 		const deleteItemList = items.filter(item => item.id !== id);
 		setItems(deleteItemList)
+		setVisibleItems(filterState(deleteItemList, filter));
 		setCount(count - 1)
+ 
+        // let num = 0;
+        // deleteItemList.forEach(item => {
+
+        //   if (item.isDone === true) {
+        //     num++;
+        //   }
+		//   item.index -= num;
+		// });	  
 	};
 
 	const onClickAdd = value => {
-	
-	setItems([...items,
-				{
-					value,
-					isDone: false,
-					id: count + 1
-				}]);
-	setCount( count + 1)
-};
-		
+		const newItemList = [...items,
+			{
+				value,
+				isDone: false,
+				id: count + 1
+			}];
+		setItems(newItemList);
+		setCount( count + 1);
+		setVisibleItems(filterState(newItemList, filter));
+	};
+
+	const onClickFilter = string => {
+		const newItemList = items;
+		setFilter(string);
+		setVisibleItems(filterState(newItemList, string));
+	};
+
+	function filterState(obj, string) {
+		return (string === 'active' ? 
+			obj.filter(item => !item.isDone) :
+				string === 'done' ?
+					obj.filter(item => item.isDone) : obj)
+	}
+
+	const onClickAllDelete = () => {
+		const deleteItemList = items.filter(item => item.isDone !== true);
+		setItems(deleteItemList);
+		setVisibleItems(filterState(deleteItemList, filter));
+	  };
+
+	useEffect(() => {
+		localStorage.setItem("count", JSON.stringify(count));
+	  }, [count]);
+
 		return (
 			<div className={styles.wrap}>
 				<div className={styles.color}>
 					<h1 className={styles.title}>Дела на день:</h1>
-					<InputItem onClickAdd={onClickAdd}/>
+					<InputItem 
+						onClickAdd={onClickAdd}
+						items={items}/>
 					<ItemList 
-						items={items} 
+						items={visibleItems} 
 						onButtonClick={onButtonClick} 
 						onClickDelete={onClickDelete}/>
-					<Footer count={count}/>
+					<Footer 
+						count={items.length}
+						num={items.filter(item => item.isDone === false).length}
+						numDone={items.filter(i => i.isDone === true).length}
+						onClickFilter={onClickFilter}
+						onClickAllDelete={onClickAllDelete}
+						onClickDelete={onClickDelete}/>
 				</div>
 			</div>);
 };

@@ -6,25 +6,34 @@ import styles from './InputItem.module.css';
 class InputItem extends React.Component {
 	state = {
 		inputValue: '',
+		items: [],
 		inputLabel: 'Новое дело'
 	};
 
-	onButtonClick =() => {
+	onButtonClick = () => {
 		if(this.state.inputValue !== '') {
-			this.setState({
-				inputValue: ''
-			});
-			this.props.onClickAdd(this.state.inputValue.charAt(0).toUpperCase() + this.state.inputValue.toLowerCase());
+			if(this.props.items.some((item) => this.state.inputValue.toLowerCase() === item.value.toLowerCase())) {
+				this.setState({
+					inputValue: '',
+					inputLabel: <span className={styles.color}>Такое дело уже есть</span>
+				});
+			} else {
+				this.setState({
+					inputValue: ''
+				});
+				this.props.onClickAdd(this.state.inputValue.charAt(0).toUpperCase() + this.state.inputValue.toLowerCase().slice(1));
+			}	
 		} else {
 			this.setState({
 				inputLabel: <span className={styles.color}>Ошибка: Пустое поле</span>
 			});
 		}	
+		console.log(this.props.onClickAdd)
 	}
 
 
 	render() {
-		const { onClickAdd } = this.props;
+		const { onClickAdd, items } = this.props;
 
 		return (<div className={styles.input}>
 			<TextField 
